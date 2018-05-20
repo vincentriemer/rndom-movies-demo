@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true,
+  "flow.enabled": true,
+  "flow.useNPMPackagedFlow": true
+}

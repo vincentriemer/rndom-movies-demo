@@ -1,0 +1,12 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+    [
+      "babel-plugin-transform-builtin-classes",
+      {
+        "globals": ["HTMLElement"]
+      }
+    ],
+    "transform-decorators-legacy"
+  ]
+}

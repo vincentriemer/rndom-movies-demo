@@ -1,0 +1,11 @@
+{
+  "name": "rndom-movie-demo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve ./dist --cache 31556952000 -t"
+  },
+  "dependencies": {
+    "serve": "^6.5.6"
+  }
+}

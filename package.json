@@ -1,0 +1,49 @@
+{
+  "name": "rndom-movies-demo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "prebuild:dom": "rimraf dom/dist && mkdir -p dom/dist",
+    "build:dom":
+      "NODE_ENV=production yarn build:dom:native && yarn build:dom:js",
+    "build:dom:native":
+      "react-native bundle --config $(pwd)/rn-cli.config.js --dev false --entry-file ./dom/bootstrap.js --bundle-output ./dom/dist/bootstrap.bundle --platform dom",
+    "build:dom:js":
+      "react-native bundle --config $(pwd)/rn-cli.config.js --dev false --entry-file ./dom/entry.js --bundle-output ./dom/dist/entry.bundle --platform dom --assets-dest ./dom/dist",
+    "postbuild:dom": "cp ./dom/index.html ./dom/dist/index.html",
+    "deploy": "cd dom && now && now alias"
+  },
+  "resolutions": {
+    "whatwg-fetch": "^2.0.4"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "fontfaceobserver": "^2.0.13",
+    "react": "^16.3.1",
+    "react-native": "0.55.2",
+    "react-native-dom": "0.1.0",
+    "react-native-fade-in-image":
+      "file:./local-forks/react-native-fade-in-image",
+    "react-native-optimized-flatlist": "^1.0.4",
+    "react-native-typography": "^1.3.0",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^1.5.11",
+    "recyclerlistview": "^1.3.1"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.3",
+    "babel-plugin-transform-builtin-classes": "^0.6.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react-native": "4.0.0",
+    "flow-bin": "0.64.0",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

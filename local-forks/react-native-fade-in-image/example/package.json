@@ -1,0 +1,15 @@
+{
+  "name": "fade-in-image-example",
+  "version": "0.0.0",
+  "description": "Hello Expo!",
+  "author": "support@expo.io",
+  "private": true,
+  "main": "main.js",
+  "dependencies": {
+    "@expo/react-native-fade-in-image": "../",
+    "@expo/vector-icons": "~4.0.0",
+    "expo": "~14.0.2",
+    "react": "~15.4.0",
+    "react-native": "https://github.com/exponent/react-native/archive/sdk-14.0.0.tar.gz"
+  }
+}
