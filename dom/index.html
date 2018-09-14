@@ -10,19 +10,31 @@
   <link rel="preload" href="./bootstrap.bundle?platform=dom&dev=true" as="script" />
   <link rel="preload" href="./entry.bundle?platform=dom&dev=true" as="fetch" />
   <style>
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-  }
-</style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
 </head>
 
 <body>
   <script src="./bootstrap.bundle?platform=dom&dev=true"></script>
+  <script>
+    (function (f, a, t, h, o, m) {
+      a[h] = a[h] || function () {
+        (a[h].q = a[h].q || []).push(arguments)
+      };
+      o = f.createElement('script'),
+        m = f.getElementsByTagName('script')[0];
+      o.async = 1; o.src = t; o.id = 'fathom-script';
+      m.parentNode.insertBefore(o, m)
+    })(document, window, '//rndom-analytics.vincentriemer.app/tracker.js', 'fathom');
+    fathom('trackPageview');
+  </script>
 </body>
 
 </html>

@@ -35,6 +35,61 @@ const LoadingFooter = () => (
 
 const Separator = () => <View style={styles.separator} />;
 
+class Item extends React.Component<*> {
+  shouldComponentUpdate(nextProps) {
+    return this.props.item.id !== nextProps.item.id;
+  }
+
+  render() {
+    const { item, handleMoviePress } = this.props;
+
+    return (
+      <View>
+        <TouchableHighlight
+          style={styles.itemContainer}
+          onPress={handleMoviePress(item)}
+        >
+          <View
+            style={{
+              flex: 1,
+              padding: 10,
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor: "white",
+            }}
+          >
+            <Image
+              source={{
+                uri: item.poster_path ? imageURL(item.poster_path, "w500") : "",
+              }}
+              style={styles.itemImage}
+            />
+            <View
+              style={{
+                flexGrow: 0,
+              }}
+            >
+              <View>
+                <Text style={human.headline} numberOfLines={1}>
+                  {item.title}
+                </Text>
+              </View>
+              <Text style={human.body}>
+                {item.release_date.split("-")[0]}
+                {"   "}
+                <Text style={{ color: setColor(item.vote_average) }}>
+                  {item.vote_average}
+                </Text>
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+        <Separator />
+      </View>
+    );
+  }
+}
+
 type Props = {
   movies: Movie[],
   loading: boolean,
@@ -72,52 +127,16 @@ export class MovieList extends React.Component<Props> {
   });
 
   renderItem = (type: number, item: Movie) => (
-    <View>
-      <TouchableHighlight
-        style={styles.itemContainer}
-        onPress={this.handleMoviePress(item)}
-      >
-        <View
-          style={{
-            flex: 1,
-            padding: 10,
-            flexDirection: "row",
-            alignItems: "center",
-            backgroundColor: "white",
-          }}
-        >
-          <Image
-            source={{
-              uri: item.poster_path ? imageURL(item.poster_path, "w500") : "",
-            }}
-            style={styles.itemImage}
-          />
-          <View
-            style={{
-              flexGrow: 0,
-            }}
-          >
-            <View>
-              <Text style={human.headline} numberOfLines={1}>
-                {item.title}
-              </Text>
-            </View>
-            <Text style={human.body}>
-              {item.release_date.split("-")[0]}
-              {"   "}
-              <Text style={{ color: setColor(item.vote_average) }}>
-                {item.vote_average}
-              </Text>
-            </Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-      <Separator />
-    </View>
+    <Item type={type} item={item} handleMoviePress={this.handleMoviePress} />
   );
 
   render() {
     const { movies, loading, onEndReached } = this.props;
+
+    // $FlowFixMe
+    if (movies.getSize() === 0) {
+      return <LoadingFooter />;
+    }
 
     return (
       <RecyclerListView
@@ -128,6 +147,7 @@ export class MovieList extends React.Component<Props> {
         onEndReachedThreshold={ITEM_HEIGHT * 5}
         renderFooter={loading ? LoadingFooter : null}
         canChangeSize={true}
+        renderAheadOffset={ITEM_HEIGHT * 4}
       />
     );
   }
