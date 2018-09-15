@@ -2,26 +2,15 @@
  * @flow
  */
 
-import {
-  RCT_EXPORT_METHOD,
-  RCT_EXPORT_MODULE,
-  RCTFunctionTypePromise,
-} from "react-native-dom";
-
+import { RCTModule } from "react-native-dom";
 import FontFaceObserver from "fontfaceobserver";
 
 import type { RCTBridge } from "react-native-dom";
 
-@RCT_EXPORT_MODULE("FontLoader")
-export default class FontLoader {
-  bridge: RCTBridge;
+export default class FontLoader extends RCTModule {
+  static moduleName = "FontLoader";
 
-  constructor(bridge: RCTBridge) {
-    this.bridge = bridge;
-  }
-
-  @RCT_EXPORT_METHOD(RCTFunctionTypePromise)
-  loadFont(name: string, url: string, resolveId: number, rejectId: number) {
+  $$loadFont(name: string, url: string) {
     // generate font-face css string
     const fontStyles = `@font-face {
       src: url(${url});
@@ -46,9 +35,6 @@ export default class FontLoader {
 
     // load font
     const font = new FontFaceObserver(name);
-    font
-      .load()
-      .then(this.bridge.callbackFromId(resolveId))
-      .catch(this.bridge.callbackFromId(rejectId));
+    return font.load();
   }
 }

@@ -7,7 +7,7 @@ import {
   UIManager,
   TouchableOpacity,
 } from "react-native";
-import { StackNavigator, TabNavigator, TabBarBottom } from "react-navigation";
+import { createStackNavigator } from "react-navigation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { Font } from "./Font";
@@ -42,6 +42,7 @@ const baseStackConfig = {
             borderBottomWidth: StyleSheet.hairlineWidth,
             borderBottomColor: "#A7A7AA",
             height: 44,
+            zIndex: 5,
           }
         : null),
     },
@@ -74,7 +75,7 @@ const baseStackConfig = {
   }),
 };
 
-const PopularStack = StackNavigator(
+const PopularStack = createStackNavigator(
   {
     PopularList: {
       screen: PopularListScreen,
@@ -90,7 +91,7 @@ const PopularStack = StackNavigator(
   }
 );
 
-const MainStack = StackNavigator(
+const MainStack = createStackNavigator(
   {
     Main: {
       screen: PopularStack,

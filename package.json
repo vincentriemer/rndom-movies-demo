@@ -19,22 +19,18 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "fontfaceobserver": "^2.0.13",
-    "react": "^16.3.1",
-    "react-native": "0.55.2",
-    "react-native-dom": "^0.2.0",
-    "react-native-fade-in-image": "file:./local-forks/react-native-fade-in-image",
+    "react": "16.5.0",
+    "react-native": "0.57.0",
+    "react-native-dom": "~0.4.0",
+    "react-native-fade-in-image": "^1.4.1",
     "react-native-optimized-flatlist": "^1.0.4",
     "react-native-typography": "^1.3.0",
     "react-native-vector-icons": "^4.6.0",
-    "react-navigation": "^1.5.11",
-    "recyclerlistview": "beta"
+    "react-navigation": "^2.14.2",
+    "recyclerlistview": "^1.3.4"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
-    "babel-plugin-transform-builtin-classes": "^0.6.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react-native": "4.0.0",
     "flow-bin": "0.64.0",
     "jest": "22.4.3",
     "react-test-renderer": "16.3.1"
